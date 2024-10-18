@@ -1,0 +1,89 @@
+*sqroller.txt*		Adds scrollbar.
+
+
+Author : Bakudankun
+License: MIT
+
+
+==============================================================================
+CONTENTS						*sqroller-contents*
+
+INTRODUCTION						|sqroller|
+COMMANDS						|sqroller-commands|
+OPTIONS							|sqroller-options|
+
+
+==============================================================================
+INTRODUCTION						*sqroller*
+
+sqroller.vim adds scrollbars to the leftmost column of each window. To achieve
+this, sqroller.vim enables 'foldcolumn' and creates popup windows that overlap
+them. Basic mouse interaction is supported.
+
+
+==============================================================================
+COMMANDS						*sqroller-commands*
+
+:SqrollerEnable						*:SqrollerEnable*
+			Globally enables scrollbars.
+
+:SqrollerDisable					*:SqrollerDisable*
+			Globally disables scrollbars.
+
+
+==============================================================================
+OPTIONS							*sqroller-options*
+
+Every options are containd in *g:sqroller_config* dictionary.
+
+						*g:sqroller_config.algorithm*
+algorithm		(default: "keeplen")
+	Tweak how scrollbars are drawn.
+		"keeplen"	Give weight to consistent length. Scrollbars
+				may sometimes shrink to the up while scrolling
+				down.
+		"topbot"	Give weight to the accuracy of top/bottom
+				position of scrollbars. Scrollbars may
+				repeatedly shrink and extend while scrolling.
+
+						*g:sqroller_config.enabled*
+enabled			(default: true)
+	If |truthy|, scrollbars are globally enabled. You can toggle this with
+	`:SqrollerEnable` and `:SqrollerDisable` commands.
+	See |g:sqroller_config.hide_for| and |w:sqroller_enabled| to
+	individually show/hide scrollbars.
+
+						*g:sqroller_config.hide_for*
+hide_for		(default: [])
+	Specify the list of filetypes that scrollbars should be disabled.
+
+					*g:sqroller_config.hide_full_bars*
+hide_full_bars		(default: false)
+	If |truthy|, scrollbars are hidden when otherwise they have full
+	window height.
+
+						*g:sqroller_config.keepjumps*
+keepjumps		(default: false)
+	If |truthy|, clicking a scrollbar with mouse does not update the
+	|jumplist|.
+
+						*g:sqroller_config.style*
+style			(default: "heavy")
+	Specify the style of the scrollbar.
+	Possible values:
+		"light"		Use light box drawing letters.
+		"heavy"		Use heavy box drawing letters.
+		"block"		Use block elements letters.
+		"left"		Use left half block elements letters.
+		"right"		Use right half block elements letters.
+				Note: This is a good option when 'ambiwidth'
+				is "double" because they are always single
+				width.
+		"ascii"		Use only ASCII letters.
+
+						*w:sqroller_enabled*
+You can enable/disable scrollbars for individual windows by setting
+|window-variable| "w:sqroller_enabled" to true/false.
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
